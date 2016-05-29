@@ -6,22 +6,32 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private Button jumpChildOne_bt;
+    private Button jumpFullscreenActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         jumpChildOne_bt=(Button)findViewById(R.id.jumpChildOne_bt);
-        jumpChildOne_bt.setOnClickListener(listener);
+        jumpFullscreenActivity=(Button)findViewById(R.id.jumpFullscreenActivity_bt);
+        jumpChildOne_bt.setOnClickListener(this);
+        jumpFullscreenActivity.setOnClickListener(this);
     }
-    View.OnClickListener listener=new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent=new Intent(MainActivity.this,LoginActivityBar.class);
-            startActivity(intent);
-
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.jumpChildOne_bt: {
+                Intent intent = new Intent(MainActivity.this, LoginActivityBar.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.jumpFullscreenActivity_bt: {
+                Intent intent = new Intent(MainActivity.this, FullscreenActivity.class);
+                startActivity(intent);
+                break;
+            }
         }
-    };
+    }
 }

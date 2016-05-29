@@ -19,4 +19,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/holloWorld_tv"/>
+    <Button
+        android:id="@+id/jumpFullscreenActivity_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/jumpChildOne_bt"/>
 </RelativeLayout>
