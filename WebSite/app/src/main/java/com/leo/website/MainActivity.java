@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 public class MainActivity extends AppCompatActivity {
     private WebView mWebView;
     private ProgressBar loadBar;
-    private String url="http://sign.ueit.com.cn";
+    private String url="http://www.baidu.com";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
