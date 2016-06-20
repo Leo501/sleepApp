@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="AaiceBlue">#F0F8FF</color>
+    <color name="blue">#66CCCC</color>
+    <color name="white">#ffffff</color>
+    <color name="green">#666699</color>
+    <color name="grap_1">#333333</color>
+    <color name="grap_2">#666666</color>
+    <color name="dim_grep">#696969</color>
+    <color name="dark_grep">#A9A9A9</color>
+    <color name="purple">#666699</color>
+    <color name="light_blue">#A9A9A9</color>
+    <color name="reg">#f00000</color>
+</resources>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Sleep</string>
+    <string name="tab_menu_home_text">主页</string>
+    <string name="tab_menu_sleep_text">睡觉</string>
+    <string name="tab_menu_user_text">我的</string>
+    <string name="tab_menu_record_text">记录</string>
+    <string name="fragment_sleep_tv">睡觉</string>
+    <string name="fragment_sleep_contend_tv">睡眠</string>
+    <string name="fragment_record_contend_tv">记录</string>
+    <string name="fragment_user_contend_tv">用户</string>
+</resources>
