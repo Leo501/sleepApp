@@ -1,12 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
     <TextView
-        android:id="@+id/fragment_sleep_content_tv"
-        android:layout_width="match_parent"
+        android:id="@+id/fragment_record_hint_tv"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/fragment_sleep_contend_tv"/>
-
-</LinearLayout>
+        android:layout_marginTop="10dp"
+        android:textColor="@color/dim_grep"
+        android:layout_centerHorizontal="true"
+        android:text="早点睡觉吧！"/>
+    <RadioGroup
+        android:id="@+id/sleep_mood_rg"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/sleep_mood_rb_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/radio_mood_text"
+            android:text="好心情"
+            android:layout_marginRight="5dp"
+            />
+        <RadioButton
+            android:id="@+id/sleep_mood_rb_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/radio_mood_text"
+            android:text="坏心情"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            />
+        <RadioButton
+            android:id="@+id/sleep_mood_rb_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/radio_mood_text"
+            android:text="没心情"
+            android:layout_marginLeft="5dp"/>
+    </RadioGroup>
+    <info.hoang8f.widget.FButton
+        android:id="@+id/sleep_FButton_fb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="睡觉"
+        android:textColor="@color/white"
+        android:layout_marginBottom="10dp"
+        app:buttonColor="@color/blue"
+        app:shadowColor="@color/blue_dim"
+        app:shadowEnabled="true"
+        app:shadowHeight="5dp"
+        app:cornerRadius="5dp"
+        />
+    <at.markushi.ui.CircleButton
+        android:layout_width="64dip"
+        android:layout_height="64dip"
+        android:background="@drawable/circle_bg"
+        app:cb_color="@color/blue"
+        app:cb_pressedRingWidth="8dip" />
+</RelativeLayout>

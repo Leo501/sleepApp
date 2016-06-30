@@ -17,6 +17,14 @@
         <item name="android:textColor">@drawable/tab_menu_text</item>
 
     </style>
+    <style name="radio_mood_text">
+        <item name="android:background">@drawable/text_view_mood_selector</item>
+        <item name="android:textColor">@drawable/text_view_mood_text_color</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:checked">false</item>
+        <item name="android:button">@null</item>
+    </style>
     <style name="tab_menu_oval_num">
         <item name="android:layout_width">15dp</item>
         <item name="android:layout_height">15dp</item>
