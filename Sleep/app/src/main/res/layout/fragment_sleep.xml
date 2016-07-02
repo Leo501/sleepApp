@@ -58,10 +58,4 @@
         app:shadowHeight="5dp"
         app:cornerRadius="5dp"
         />
-    <at.markushi.ui.CircleButton
-        android:layout_width="64dip"
-        android:layout_height="64dip"
-        android:background="@drawable/circle_bg"
-        app:cb_color="@color/blue"
-        app:cb_pressedRingWidth="8dip" />
 </RelativeLayout>
