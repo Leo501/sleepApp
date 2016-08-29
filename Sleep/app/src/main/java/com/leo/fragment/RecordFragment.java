@@ -15,11 +15,19 @@ import java.util.zip.Inflater;
 /**
  * Created by Leo on 2016/5/14.
  */
-public class RecordFragment extends Fragment {
-    @Nullable
+public class RecordFragment extends LazyFragment {
+
+    public static RecordFragment newInstance(){
+        return new RecordFragment();
+    }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_record,container,false);
-        return view;
+    protected int getLayoutId() {
+        return R.layout.fragment_record;
+    }
+
+    @Override
+    public void initViews() {
+
     }
 }

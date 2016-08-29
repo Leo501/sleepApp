@@ -19,32 +19,20 @@ import java.util.List;
 /**
  * Created by Leo on 2016/5/14.
  */
-public class SleepFragment extends Fragment implements RadioGroup.OnCheckedChangeListener{
-    private RadioGroup radioGroup;
+public class SleepFragment extends LazyFragment{
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_sleep,container,false);
-        radioGroup=(RadioGroup)view.findViewById(R.id.sleep_mood_rg);
 
-        radioGroup.setOnCheckedChangeListener(this);
-        return view;
+    public static SleepFragment newInstance(){
+        return new SleepFragment();
     }
 
     @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId){
-            case R.id.sleep_mood_rb_1:
+    protected int getLayoutId() {
+        return R.layout.fragment_sleep;
+    }
 
-                Toast.makeText(getActivity().getApplicationContext(),"你选择了好心情",Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.sleep_mood_rb_2:
-                Toast.makeText(getActivity().getApplicationContext(),"你选择了坏心情",Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.sleep_mood_rb_3:
-                Toast.makeText(getActivity().getApplicationContext(),"你选择了没心情",Toast.LENGTH_SHORT).show();
-                break;
-        }
+    @Override
+    public void initViews() {
+
     }
 }

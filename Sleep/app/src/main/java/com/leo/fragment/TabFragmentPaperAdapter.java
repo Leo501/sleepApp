@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.leo.sleep.MainActivity;
+import com.leo.sleep.Main1Activity;
 
 /**
  * Created by Leo on 2016/5/15.
@@ -25,13 +25,13 @@ public class TabFragmentPaperAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         Fragment fragment=null;
         switch (position){
-            case MainActivity.PAGE_ONE:
+            case Main1Activity.PAGE_ONE:
                 fragment=sleepFragment;
                 break;
-            case MainActivity.PAGE_TWO:
+            case Main1Activity.PAGE_TWO:
                 fragment=recordFragment;
                 break;
-            case MainActivity.PAGE_THREE:
+            case Main1Activity.PAGE_THREE:
                 fragment=userFragment;
                 break;
         }

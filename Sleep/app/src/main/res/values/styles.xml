@@ -1,12 +1,13 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/grap_2</item>
-        <item name="colorPrimaryDark">@color/grap_1</item>
+        <item name="colorPrimary">@color/blue_greg_500</item>
+        <item name="colorPrimaryDark">@color/blue_greg_600</item>
         <item name="colorAccent">@color/colorPrimaryDark</item>
     </style>
+
     <style name="tab_menu_text">
         <item name="android:layout_marginTop">1dp</item>
         <item name="android:layout_width">wrap_content</item>
@@ -17,6 +18,7 @@
         <item name="android:textColor">@drawable/tab_menu_text</item>
 
     </style>
+
     <style name="radio_mood_text">
         <item name="android:background">@drawable/text_view_mood_selector</item>
         <item name="android:textColor">@drawable/text_view_mood_text_color</item>
@@ -25,6 +27,7 @@
         <item name="android:checked">false</item>
         <item name="android:button">@null</item>
     </style>
+
     <style name="tab_menu_oval_num">
         <item name="android:layout_width">15dp</item>
         <item name="android:layout_height">15dp</item>
@@ -34,5 +37,14 @@
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/white</item>
     </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

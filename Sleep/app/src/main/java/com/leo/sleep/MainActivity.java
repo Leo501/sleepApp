@@ -1,164 +1,127 @@
 package com.leo.sleep;
 
-import android.app.ActionBar;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.net.Uri;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.leo.base.AbsBaseActivity;
 import com.leo.fragment.RecordFragment;
 import com.leo.fragment.SleepFragment;
-import com.leo.fragment.TabFragmentPaperAdapter;
 import com.leo.fragment.UserFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener ,ViewPager.OnPageChangeListener{
-    private LinearLayout tab_menu_sleep_ly;
-    private TextView tab_menu_sleep;
-    private TextView tab_menu_sleep_num;
-    private LinearLayout tab_menu_record_ly;
-    private TextView tab_menu_record;
-    private TextView tab_menu_record_num;
-    private LinearLayout tab_menu_user_ly;
-    private TextView tab_menu_user;
-    private TextView tab_menu_user_num;
-    private TabFragmentPaperAdapter mAdapter;
-    private ViewPager viewPager;
-    private List<Fragment> tabList;
+import butterknife.BindView;
 
-    public static final int PAGE_ONE = 0;
-    public static final int PAGE_TWO = 1;
-    public static final int PAGE_THREE = 2;
+public class MainActivity extends AbsBaseActivity {
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.main_bottom_navigation)
+    AHBottomNavigation aHBottomNavigation;
+
+    private int currentTabIndex;
+
+    private List<Fragment> fragments=new ArrayList<>();
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        bindViews();
-        setSelected();
-        //选中第一个
-        tab_menu_sleep.setSelected(true);
-        //取得一个adapter
-        mAdapter = new TabFragmentPaperAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(mAdapter);
-        viewPager.setCurrentItem(PAGE_ONE);
-        viewPager.addOnPageChangeListener(this);
-
+    protected int setLayoutId() {
+        return R.layout.activity_main;
     }
 
     /**
-     * 绑定点击事件
-     */
-    void bindViews() {
-        tab_menu_sleep_ly = (LinearLayout) findViewById(R.id.tab_menu_sleep_ly);
-        tab_menu_sleep = (TextView) findViewById(R.id.tab_menu_sleep);
-        tab_menu_sleep_num = (TextView) findViewById(R.id.tab_menu_sleep_num);
-
-        tab_menu_record_ly = (LinearLayout) findViewById(R.id.tab_menu_record_ly);
-        tab_menu_record = (TextView) findViewById(R.id.tab_menu_record);
-        tab_menu_record_num = (TextView) findViewById(R.id.tab_menu_record_num);
-
-        tab_menu_user_ly = (LinearLayout) findViewById(R.id.tab_menu_user_ly);
-        tab_menu_user = (TextView) findViewById(R.id.tab_menu_user);
-        tab_menu_user_num = (TextView) findViewById(R.id.tab_menu_user_num);
-
-        tab_menu_sleep_ly.setOnClickListener(this);
-        tab_menu_record_ly.setOnClickListener(this);
-        tab_menu_user_ly.setOnClickListener(this);
-
-        viewPager = (ViewPager) findViewById(R.id.tab_menu_contend_vp);
-    }
-
-    /**
-     * 对点击事件处理
-     *
-     * @param v
+     * 设置view
+     * @param savedInstanceState
      */
     @Override
-    public void onClick(View v) {
-        Log.i("click", "clicked");
-        Log.i("click", "" + v.getId());
-        setSelected();
-        switch (v.getId()) {
-            case R.id.tab_menu_sleep_ly:
-                viewPager.setCurrentItem(PAGE_ONE);
-                Log.i("click", "sleep");
-                tab_menu_sleep.setSelected(true);
-                tab_menu_sleep_num.setVisibility(View.VISIBLE);
-                break;
-            case R.id.tab_menu_record_ly:
-                Log.i("click", "record");
-                viewPager.setCurrentItem(PAGE_TWO);
-                tab_menu_record.setSelected(true);
-                tab_menu_record_num.setVisibility(View.VISIBLE);
-                break;
-            case R.id.tab_menu_user_ly:
-                Log.i("click", "user");
-                viewPager.setCurrentItem(PAGE_THREE);
-                tab_menu_user.setSelected(true);
-                tab_menu_user_num.setVisibility(View.VISIBLE);
-                break;
-        }
+    protected void initViews(Bundle savedInstanceState) {
+        fragments.add(SleepFragment.newInstance());
+        fragments.add(RecordFragment.newInstance());
+        fragments.add(UserFragment.newInstance());
 
+        showFragment(fragments.get(0));
+        initBottomNav();
     }
 
-    /**
-     * 设置为隐藏
-     */
-    void setSelected() {
-        tab_menu_sleep.setSelected(false);
-        tab_menu_sleep_num.setVisibility(View.GONE);
-        tab_menu_record.setSelected(false);
-        tab_menu_record_num.setVisibility(View.GONE);
-        tab_menu_user.setSelected(false);
-        tab_menu_user_num.setVisibility(View.GONE);
+    private void initBottomNav() {
+        AHBottomNavigationItem item1=new AHBottomNavigationItem("睡觉",R.mipmap.tab_sleep_normal,R.color.blue_500);
+        AHBottomNavigationItem item2=new AHBottomNavigationItem("记录",R.mipmap.tab_record_normal,R.color.indigo_500);
+        AHBottomNavigationItem item3=new AHBottomNavigationItem("我的",R.mipmap.tab_user_normal,R.color.deep_purple_500);
 
+        aHBottomNavigation.addItem(item1);
+        aHBottomNavigation.addItem(item2);
+        aHBottomNavigation.addItem(item3);
 
-    }
+        aHBottomNavigation.setDefaultBackgroundColor(Color.parseColor("#ffffff"));
+        aHBottomNavigation.setBehaviorTranslationEnabled(false);
 
+        aHBottomNavigation.setAccentColor(ContextCompat.getColor(getApplicationContext(),R.color.blue_500));
+        aHBottomNavigation.setInactiveColor(ContextCompat.getColor(getApplicationContext(),R.color.blue_greg_500));
 
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        Log.i("onPageScrolled","position:"+position+"/"+"positionOffset:"+positionOffset+"/"
-       +"positionOffsetPixels"+positionOffsetPixels );
-    }
+        aHBottomNavigation.setForceTint(true);
 
-    @Override
-    public void onPageSelected(int position) {
-        Log.i("onPageSelected",""+position);
-
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-        //state的状态有三个，0表示什么都没做，1正在滑动，2滑动完毕
-        Log.i("state",""+state);
-        if(state==2){
-            setSelected();
-            switch (viewPager.getCurrentItem()){
-                case PAGE_ONE:
-                    tab_menu_sleep.setSelected(true);
-                    tab_menu_sleep_num.setVisibility(View.VISIBLE);
-                    break;
-                case PAGE_TWO:
-                    tab_menu_record.setSelected(true);
-                    tab_menu_record_num.setVisibility(View.VISIBLE);
-                    break;
-                case PAGE_THREE:
-                    tab_menu_user.setSelected(true);
-                    tab_menu_user_num.setVisibility(View.VISIBLE);
-                    break;
+        aHBottomNavigation.setForceTitlesDisplay(true);
+        aHBottomNavigation.setCurrentItem(0);
+        aHBottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
+            @Override
+            public boolean onTabSelected(int position, boolean wasSelected) {
+                if (currentTabIndex!=position){
+                    FragmentTransaction trx=getSupportFragmentManager().beginTransaction();
+                    trx.hide(fragments.get(currentTabIndex));
+                    if (!fragments.get(position).isAdded()){
+                        trx.add(R.id.main_content,fragments.get(position));
+                    }
+                    trx.show(fragments.get(position)).commit();
+                }
+                currentTabIndex=position;
+                return true;
             }
-        }
+        });
+
     }
+
+    @Override
+    protected void initToolBar() {
+        toolbar.setTitle("Sleep");
+        setSupportActionBar(toolbar);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.main_action_settings) {
+            Toast.makeText(MainActivity.this, "关于我。。。。", Toast.LENGTH_SHORT).show();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    private void showFragment(Fragment fragment){
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_content,fragment).commit();
+    }
+
 }

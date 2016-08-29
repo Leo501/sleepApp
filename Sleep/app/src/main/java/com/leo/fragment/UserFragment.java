@@ -12,11 +12,19 @@ import com.leo.sleep.R;
 /**
  * Created by Leo on 2016/5/15.
  */
-public class UserFragment extends Fragment {
-    @Nullable
+public class UserFragment extends LazyFragment {
+
+    public static UserFragment newInstance(){
+        return new UserFragment();
+    }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_user,container,false);
-        return view;
+    protected int getLayoutId() {
+        return R.layout.fragment_user;
+    }
+
+    @Override
+    public void initViews() {
+
     }
 }
