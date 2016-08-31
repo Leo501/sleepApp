@@ -102,6 +102,5 @@
         android:id="@+id/tab_menu_contend_vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:layout_above="@+id/tab_menu_divide"/>
 </RelativeLayout>
